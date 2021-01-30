@@ -6,6 +6,8 @@ import org.junit.jupiter.params.provider.*;
 
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.DynamicTest.dynamicTest;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UtilitiesTest {
 
@@ -134,6 +136,12 @@ public class UtilitiesTest {
 
     static Stream<String> stringProvider() {
         return Stream.of("camel", "apple");
+    }
+
+    @TestFactory
+    Stream<DynamicTest> testNullIfOddLength_WithDynamicTest() {
+        return Stream.of("book", "boos", "nine", "seek")
+                .map(text -> dynamicTest(text, () -> Assertions.assertNotNull(utilities.nullIfOddLength(text))));
     }
 
 }
