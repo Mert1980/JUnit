@@ -7,6 +7,7 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -46,10 +47,9 @@ class WordReverserTest {
         Assertions.assertEquals(expected, reverser.reverseWord(word));
     }
 
-    @Test
-    void testReverseWord_WhenPassingNull_ThenResultIsNull(){
-        String word = null;
-        Assertions.assertNull(reverser.reverseWord(word));
+    @ParameterizedTest
+    @NullSource
+    void testReverseWord_WhenPassingNull_ThenResultIsNull(String word){
+        Assertions.assertEquals(null, reverser.reverseWord(word));
     }
-
 }
