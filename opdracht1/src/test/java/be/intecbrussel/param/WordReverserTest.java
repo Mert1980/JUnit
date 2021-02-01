@@ -47,7 +47,7 @@ class WordReverserTest {
     }
 
     @Test
-    void testReverseWord_WhenPassingNull_ThenResultIsTheWord(){
+    void testReverseWord_WhenPassingNull_ThenResultIsNull(){
         String word = null;
         Assertions.assertNull(reverser.reverseWord(word));
     }
